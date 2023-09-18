@@ -41,6 +41,7 @@ dependencies {
     implementation(Deps.appCompat)
     implementation(Deps.material)
     implementation(Deps.constraintLayout)
+    implementation(Deps.splashScreen)
 
     testImplementation(Deps.testJUint)
     androidTestImplementation(Deps.androidTestJUnit)
