@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "android-kotlin-dsl"
+rootProject.name = "android-musicplayer"
 include(":app")

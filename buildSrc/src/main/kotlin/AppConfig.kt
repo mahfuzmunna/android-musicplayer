@@ -1,6 +1,6 @@
 object AppConfig {
-    const val namespace = "me.mahfuzmunna.androidkotlindsl"
-    const val applicationId = "me.mahfuzmunna.androidkotlindsl"
+    const val namespace = "me.mahfuzmunna.musicplayer"
+    const val applicationId = "me.mahfuzmunna.musicplayer"
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     const val compileSdk = 33

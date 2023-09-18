@@ -1,8 +1,8 @@
-package me.mahfuzmunna.androidkotlindsl
+package me.mahfuzmunna.musicplayer
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import me.mahfuzmunna.androidkotlindsl.databinding.ActivityMainBinding
+import me.mahfuzmunna.musicplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

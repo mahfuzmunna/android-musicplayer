@@ -1,4 +1,4 @@
-package me.mahfuzmunna.androidkotlindsl
+package me.mahfuzmunna.musicplayer
 
 import org.junit.Test
 

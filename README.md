@@ -1,1 +1,1 @@
-### Android Kotlin DSL - __Template Repository__
+### Android - __MusicPlayer__ _[FOSS]_
