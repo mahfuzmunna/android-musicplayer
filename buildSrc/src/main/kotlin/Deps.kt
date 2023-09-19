@@ -4,6 +4,7 @@ object Deps {
     val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.appCompat}" }
     val material by lazy { "com.google.android.material:material:${Versions.material}" }
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
+    val coroutinesAndroid by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroid}"}
 
     val splashScreen by lazy { "androidx.core:core-splashscreen:${Versions.splashScreen}" }
 

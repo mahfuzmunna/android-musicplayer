@@ -4,6 +4,7 @@ object Versions {
     const val material = "1.9.0"
     const val constraintLayout = "2.1.4"
     const val splashScreen = "1.0.0-beta02"
+    const val coroutinesAndroid = "1.6.3"
 
     const val testJUnit = "4.13.2"
     const val androidTestJUnit = "1.1.5"

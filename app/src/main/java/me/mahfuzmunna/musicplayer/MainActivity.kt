@@ -1,5 +1,6 @@
 package me.mahfuzmunna.musicplayer
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +12,7 @@ import me.mahfuzmunna.musicplayer.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val REQUEST_STORAGE_PERMISSION = 1001
+    var granted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -18,8 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.initializePlayer.setOnClickListener {
-            if (isStoragePermission()) {
+            if (hasPermission()) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, PlayerActivity::class.java))
+                finish()
             } else requestForPermission()
 
         }
@@ -27,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun requestForPermission() {
-
         val permissions = arrayOf(
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -35,16 +38,19 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_STORAGE_PERMISSION)
     }
 
-    private fun isStoragePermission(): Boolean {
+    private fun hasPermission(): Boolean {
 
-        return ((ActivityCompat.checkSelfPermission(
-            this,
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED) && (ActivityCompat.checkSelfPermission(
-            this,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED)
-                )
+        if ((ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED) && (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED)
+        ) {
+            granted = true
+        } else granted = false
+        return granted
     }
 
     override fun onRequestPermissionsResult(
@@ -53,13 +59,16 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == REQUEST_STORAGE_PERMISSION) {
-            if (grantResults.size != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                //granted
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
+        if (requestCode != REQUEST_STORAGE_PERMISSION) {
+            return
         }
+
+        if (permissions.size == grantResults.size) {
+            granted = true
+        } else {
+            Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+        }
+
 
     }
 }
