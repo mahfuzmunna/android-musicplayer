@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.initializePlayer.setOnClickListener {
             if (isStoragePermission()) {
-                Toast.makeText(this, "Permitted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
             } else requestForPermission()
 
         }
@@ -45,5 +45,21 @@ class MainActivity : AppCompatActivity() {
             android.Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED)
                 )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == REQUEST_STORAGE_PERMISSION) {
+            if (grantResults.size != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                //granted
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 }
